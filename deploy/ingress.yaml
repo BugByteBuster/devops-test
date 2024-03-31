@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: alukachai
+  namespace: candidate-e
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: alukachai.test-subaccount-1-v02.test-subaccount-1.rr.mu
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: alukachai.test-subaccount-1-v02.test-subaccount-1.rr.mu
+    http:
+      paths:
+      - backend:
+          service:
+            name: nginx
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
